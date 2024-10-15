@@ -1,0 +1,40 @@
+server:
+  port: ${PORT}
+spring:
+  config:
+    import: "optional:file:.env[.properties]"
+  application:
+    name: An Giang Tourism
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    open-in-view: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates
+app:
+  jwt:
+    access:
+      secret: ${JWT_ACCESS_SECRET}
+      expiration: ${JWT_ACCESS_EXPIRATION}
+    refresh:
+      secret: ${JWT_REFRESH_SECRET}
+      expiration: ${JWT_REFRESH_EXPIRATION}
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type: TRACE

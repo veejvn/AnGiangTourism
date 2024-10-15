@@ -1,0 +1,34 @@
+package javaweb.AnGiangTourism.controller;
+
+import javaweb.AnGiangTourism.dto.DataDto;
+import javaweb.AnGiangTourism.dto.GeoJSON.FeatureCollection;
+import javaweb.AnGiangTourism.entity.Data;
+import javaweb.AnGiangTourism.service.DataService;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@CrossOrigin(origins = "http://127.0.0.1:5500/")
+@RestController
+@RequestMapping("/api/data")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class DataController {
+
+    DataService dataService;
+
+    @GetMapping
+    public FeatureCollection getData(){
+        return dataService.getData();
+    }
+
+}
