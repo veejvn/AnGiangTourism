@@ -1,10 +1,10 @@
 package javaweb.AnGiangTourism.repository;
 
-import javaweb.AnGiangTourism.entity.Data;
+import javaweb.AnGiangTourism.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DataRepository extends JpaRepository<Data, Integer> {
-
+public interface AccountRepository extends JpaRepository<Account, String> {
+    boolean existsByEmail(String email);
 }

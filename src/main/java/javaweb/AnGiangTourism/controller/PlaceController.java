@@ -1,7 +1,7 @@
 package javaweb.AnGiangTourism.controller;
 
 import javaweb.AnGiangTourism.dto.GeoJSON.FeatureCollection;
-import javaweb.AnGiangTourism.service.DataService;
+import javaweb.AnGiangTourism.service.PlaceService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/data")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class DataController {
+public class PlaceController {
 
-    DataService dataService;
+    PlaceService placeService;
 
     @GetMapping
     public FeatureCollection getData(){
-        return dataService.getData();
+        return placeService.getData();
     }
 
 }

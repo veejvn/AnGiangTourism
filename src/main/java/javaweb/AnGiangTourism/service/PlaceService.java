@@ -1,11 +1,10 @@
 package javaweb.AnGiangTourism.service;
 
-import javaweb.AnGiangTourism.dto.DataDto;
 import javaweb.AnGiangTourism.dto.GeoJSON.Feature;
 import javaweb.AnGiangTourism.dto.GeoJSON.FeatureCollection;
 import javaweb.AnGiangTourism.dto.GeoJSON.Properties;
-import javaweb.AnGiangTourism.entity.Data;
-import javaweb.AnGiangTourism.repository.DataRepository;
+import javaweb.AnGiangTourism.entity.Place;
+import javaweb.AnGiangTourism.repository.PlaceRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,20 +19,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class DataService {
-    DataRepository dataRepository;
-
-    public List<DataDto> getAllDataAsGeoJson() {
-        // Lấy danh sách Data từ cơ sở dữ liệu
-        List<Data> dataList = dataRepository.findAll();
-        // Chuyển đổi danh sách Data thành DTO với GeoJSON
-        return dataList.stream()
-                .map(this::convertDataToGeoJson)
-                .collect(Collectors.toList());
-    }
+public class PlaceService {
+    PlaceRepository placeRepository;
 
     public FeatureCollection getData(){
-        List<Data> dataList = dataRepository.findAll();
+        List<Place> dataList = placeRepository.findAll();
         List<Feature> features = dataList.stream()
                 .map(this::convertDataToFeature)
                 .collect(Collectors.toList());
@@ -43,22 +33,16 @@ public class DataService {
         return featureCollection;
     }
 
-    private Feature convertDataToFeature(Data data) {
+    private Feature convertDataToFeature(Place place) {
         // Tạo properties cho Feature
-        Properties properties = new Properties(data.getName(), data.getName());
+        Properties properties = new Properties(place.getName(), place.getName());
 
         // Chuyển đổi Geometry sang GeoJSON (chuỗi GeoJSON)
-        String geoJson = convertGeometryToGeoJson(data.getThe_geom());
+        String geoJson = convertGeometryToGeoJson(place.getThe_geom());
 
         return new Feature(properties, geoJson);
     }
 
-    // Chuyển đối tượng Data thành DataDto có chứa GeoJSON
-    private DataDto convertDataToGeoJson(Data data) {
-        Geometry geometry = data.getThe_geom();
-        String geoJson = convertGeometryToGeoJson(geometry);
-        return new DataDto(data.getId(), geoJson, data.getName());
-    }
 
     // Hàm chuyển Geometry thành chuỗi GeoJSON
     private String convertGeometryToGeoJson(Geometry geometry) {
