@@ -24,7 +24,14 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templates
-#app:
+app:
+  cloudinary:
+    cloud:
+      name: ${CLOUDINARY_NAME}
+    api:
+      key: ${CLOUDINARY_API_KEY}
+      secret: ${CLOUDINARY_API_SECRET}
+    folder: ${CLOUDINARY_FOLDER}
 #  jwt:
 #    access:
 #      secret: ${JWT_ACCESS_SECRET}

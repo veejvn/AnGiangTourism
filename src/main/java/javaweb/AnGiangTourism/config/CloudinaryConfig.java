@@ -9,12 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class CloudinaryConfig {
 
+    @Value("${app.cloudinary.cloud.name}")
+    private String CLOUDINARY_NAME;
 
-    private String CLOUDINARY_NAME = "ds0gpqe3p";
+    @Value("${app.cloudinary.api.key}")
+    private String CLOUDINARY_API_KEY;
 
-    private String CLOUDINARY_API_KEY = "615477669223833";
-
-    private String CLOUDINARY_API_SECRET = "D_KvZRYuNYekLatK0-I88NpkmwE";
+    @Value("${app.cloudinary.api.secret}")
+    private String CLOUDINARY_API_SECRET;
 
     @Bean
     public Cloudinary cloudinary(){
