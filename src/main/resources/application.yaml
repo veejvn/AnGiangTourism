@@ -39,9 +39,3 @@ app:
 #    refresh:
 #      secret: ${JWT_REFRESH_SECRET}
 #      expiration: ${JWT_REFRESH_EXPIRATION}
-#logging:
-#  level:
-#    org:
-#      hibernate:
-#        SQL: DEBUG
-#        type: TRACE
