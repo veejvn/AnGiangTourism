@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .formLogin(
                         (FormBase) -> FormBase
                                 .loginPage("/admin/login")
-                                .defaultSuccessUrl("admin/home").permitAll()
+                                .defaultSuccessUrl("/admin/home").permitAll()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwtConfigurer -> jwtConfigurer
