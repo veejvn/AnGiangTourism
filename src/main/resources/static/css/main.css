@@ -1,0 +1,62 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100%;
+}
+.search-input{
+    z-index: 10;
+}
+
+/* Home Start */
+.header{
+    background-color: transparent !important;
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    right: 1%;
+    box-shadow: none;
+}
+
+.navbar-item{
+    border: 1px solid #fff;
+    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
+    background-color: #fff;
+    height: 25px;
+    width: auto;
+    text-align: center;
+    line-height: 6.1px;
+    border-radius: 15px;
+    margin-left: 3%;
+}
+.navbar-item:hover{
+    transform: scale(1.1);
+}
+
+.navbar{
+    position: absolute;
+    right: 10%;
+}
+
+.input-search{
+    border: 1px solid #fff;
+    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
+    background-color: #fff;
+    border-radius: 15px;
+    padding-left: 10px;
+}
+
+.submit-search{
+    border: 1px solid #0d6efd;
+    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
+    background-color: #0d6efd;
+    border-radius: 15px;
+}
+
+.leaflet-control-zoom {
+    position: fixed !important;
+    top: 10%;
+}
+/* Home End */

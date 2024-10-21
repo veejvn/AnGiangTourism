@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final String[] POST_PUBLIC_ROUTES = {};
-    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login"};
+    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login", "/js/**", "/css/**"};
 
     @Autowired
     public JwtDecoder jwtDecoder;
