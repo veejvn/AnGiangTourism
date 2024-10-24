@@ -1,5 +1,8 @@
 server:
   port: ${PORT}
+  servlet:
+    session:
+      timeout: 30m
 spring:
   config:
     import: "optional:file:.env[.properties]"
@@ -24,6 +27,7 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templates
+    suffix: .html
 app:
   cloudinary:
     cloud:
@@ -32,6 +36,7 @@ app:
       key: ${CLOUDINARY_API_KEY}
       secret: ${CLOUDINARY_API_SECRET}
     folder: ${CLOUDINARY_FOLDER}
+
 #  jwt:
 #    access:
 #      secret: ${JWT_ACCESS_SECRET}

@@ -19,9 +19,10 @@ public class InitAppConfig {
 
     @Bean
     ApplicationRunner applicationRunner(){
-        return args->{
-            boolean isExistedAmin = accountRepository.existsByEmail(ADMIN_EMAIL);
-            if (isExistedAmin) return;
+        return args -> {
+            boolean isExistedAdmin = accountRepository.existsByEmail(ADMIN_EMAIL);
+            if (isExistedAdmin) return;
+
             Account admin = Account.builder()
                     .email(ADMIN_EMAIL)
                     .name("Admin")
@@ -30,5 +31,6 @@ public class InitAppConfig {
             accountRepository.save(admin);
         };
     }
+
 
 }
