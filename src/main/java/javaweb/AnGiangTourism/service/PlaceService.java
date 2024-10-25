@@ -4,6 +4,7 @@ import javaweb.AnGiangTourism.dto.GeoJSON.Feature;
 import javaweb.AnGiangTourism.dto.GeoJSON.FeatureCollection;
 import javaweb.AnGiangTourism.dto.GeoJSON.Properties;
 import javaweb.AnGiangTourism.entity.Place;
+import javaweb.AnGiangTourism.mapper.PropertiesMapper;
 import javaweb.AnGiangTourism.repository.PlaceRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PlaceService {
     PlaceRepository placeRepository;
+    PropertiesMapper propertiesMapper;
 
     public FeatureCollection getData(){
         List<Place> dataList = placeRepository.findAll();
@@ -34,8 +36,9 @@ public class PlaceService {
     }
 
     private Feature convertDataToFeature(Place place) {
-        // Tạo properties cho Feature
-        Properties properties = new Properties(place.getName(), place.getName());
+
+
+        Properties properties = propertiesMapper.toProperties(place);
 
         // Chuyển đổi Geometry sang GeoJSON (chuỗi GeoJSON)
         String geoJson = convertGeometryToGeoJson(place.getThe_geom());

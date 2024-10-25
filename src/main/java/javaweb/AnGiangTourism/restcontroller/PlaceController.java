@@ -1,4 +1,4 @@
-package javaweb.AnGiangTourism.controller;
+package javaweb.AnGiangTourism.restcontroller;
 
 import javaweb.AnGiangTourism.dto.GeoJSON.FeatureCollection;
 import javaweb.AnGiangTourism.service.PlaceService;

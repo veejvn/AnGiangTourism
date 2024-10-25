@@ -15,11 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SecurityConfig {
 
     private final String[] POST_PUBLIC_ROUTES = {"/admin/logIn"};
-    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login", "/js/**", "/css/**","/error"};
+    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login", "/js/**", "/css/**","/error", "/api/data"};
 
     @Bean
     public PasswordEncoder passwordEncoder(){

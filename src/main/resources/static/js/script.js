@@ -6,11 +6,21 @@ var map = L.map("map", {center: [10.030249, 105.772097], zoom: 17});
             }
         ).addTo(map);
 
+    function onEachFeature(features, layer) {
+        if (features.properties && features.properties.name) {
+            layer.bindPopup(features.properties.name);
+        }
+    }
 
+    var layer2 = L.layerGroup().addTo(map);
 
-    var url = "http://localhost:8080/geojson"; // Đường dẫn tới API
-    $.getJSON(url, function(data) {
-        L.geoJSON(data).addTo(map);
-    }).fail(function() {
-    console.error("Error loading GeoJSON data");
+    var url = "http://localhost:8080/api/data";
+
+    $.getJSON(url, function (featureCollection) {
+      featureCollection.features.forEach(feature => {
+        feature.geometry = JSON.parse(feature.geometry);
+      })
+      L.geoJSON(featureCollection, {
+        onEachFeature: onEachFeature
+      }).addTo(layer2)
     });
