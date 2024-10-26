@@ -10,56 +10,32 @@
 <!--    <link rel="stylesheet" href="@{/css/main.css}"> &lt;!&ndash; Nếu bạn có file CSS &ndash;&gt;-->
 </head>
 <body>
-<!-- Form login -->
-<!--<form th:action="@{/admin/logIn}" th:object="${adminLoginView}" method="post">-->
-<!--    &lt;!&ndash; Email field &ndash;&gt;-->
-<!--    <div>-->
-<!--        <label for="email">Email:</label>-->
-<!--        <input type="email" id="email" th:field="*{email}" placeholder="Enter your email" required>-->
-<!--        &lt;!&ndash; Hiển thị lỗi email nếu có &ndash;&gt;-->
-<!--        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Password field &ndash;&gt;-->
-<!--    <div>-->
-<!--        <label for="password">Password:</label>-->
-<!--        <input type="password" id="password" th:field="*{password}" placeholder="Enter your password" required>-->
-<!--        &lt;!&ndash; Hiển thị lỗi password nếu có &ndash;&gt;-->
-<!--        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Submit button &ndash;&gt;-->
-<!--    <div>-->
-<!--        <button type="submit">Login</button>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Thông báo lỗi chung nếu email hoặc mật khẩu không đúng &ndash;&gt;-->
-<!--    <div th:if="${#fields.hasErrors()}">-->
-<!--        <p style="color: red;">Invalid email or password. Please try again.</p>-->
-<!--    </div>-->
-<!--</form>-->
 <section class="ftco-section" style="height: inherit;">
     <div class="container ">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0" style="margin-top: 30%;">
                     <h3 class="mb-4 text-center">Đăng Nhập</h3>
-                    <form th:action="@{/admin/logIn}" th:object="${adminLoginView}" method="post" class="signin-form">
+                    <form th:action="@{/admin/login}" th:object="${adminLoginView}" method="post" class="signin-form">
                         <div class="form-group" style="margin-bottom: 5%;">
                             <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Email" required="">
-                            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+<!--                            <div class="text-danger" th:if="${email)}">-->
+<!--                                <p th:text="${email}"> </p>-->
+<!--                            </div>-->
                         </div>
                         <div class="form-group" style="margin-bottom: 5%;">
                             <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Password"
                                    required="">
-                            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                         </div>
-                        <div th:if="${#fields.hasErrors()}" class="form-group">
-                            <p style="color: red;">Invalid email or password. Please try again.</p>
-                            </div>
+                        <div th:if="${param.error}" class="text-danger">
+                            <p  th:text="${param.error}"></p>
+                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <p style="color: red;" th:if="${#fields.hasErrors('authentication')}" th:errors="*{authentication}"></p>-->
+<!--                        </div>-->
                         <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">Remember Me
