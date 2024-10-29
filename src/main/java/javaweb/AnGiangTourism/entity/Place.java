@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Data
@@ -27,6 +28,8 @@ public class Place {
     Integer maxPrice;
     @Column(columnDefinition = "TEXT")
     String description;
+    double lon;
+    double lat;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
