@@ -36,7 +36,21 @@
                     </summary>
                     <ul class="ml-4 mt-2 space-y-2">
                         <li><a th:href="@{/admin/place/create}" class="block text-gray-700 p-2 rounded hover:bg-gray-200 transition">Tạo Mới</a></li>
-                        <li><a th:href="@{/place/delete}" class="block text-gray-700 p-2 rounded hover:bg-gray-200 transition">Xóa</a></li>
+                        <li><a th:href="@{/admin/place/list}" class="block text-gray-700 p-2 rounded hover:bg-gray-200 transition">Danh Sách</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details class="group mb-4">
+                    <summary class="flex justify-between items-center text-gray-700 p-2 rounded hover:bg-gray-200 cursor-pointer">
+                        Category
+                        <svg class="w-4 h-4 ml-2 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </summary>
+                    <ul class="ml-4 mt-2 space-y-2">
+                        <li><a th:href="@{/admin/category/create}" class="block text-gray-700 p-2 rounded hover:bg-gray-200 transition">Tạo Mới</a></li>
+                        <li><a th:href="@{/admin/category/list}" class="block text-gray-700 p-2 rounded hover:bg-gray-200 transition">Danh Sách</a></li>
                     </ul>
                 </details>
             </li>
