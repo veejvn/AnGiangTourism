@@ -1,5 +1,6 @@
 package javaweb.AnGiangTourism.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,5 +27,10 @@ public class Place {
     Integer maxPrice;
     @Column(columnDefinition = "TEXT")
     String description;
-    
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    Category category;
+
 }

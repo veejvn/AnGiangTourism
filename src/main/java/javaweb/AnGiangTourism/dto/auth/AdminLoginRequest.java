@@ -1,4 +1,4 @@
-package javaweb.AnGiangTourism.dto.Auth;
+package javaweb.AnGiangTourism.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
