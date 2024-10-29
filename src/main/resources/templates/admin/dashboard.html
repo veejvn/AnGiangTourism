@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html layout:decorate="admin/layout/layout.html" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Home-Admin</title>
 </head>
 <body>
-<h1>Home Admin</h1>
+<div layout:fragment="content">
+    <!-- Nội dung cụ thể cho Trang Chủ -->
+    <h1 class="text-2xl font-bold">Welcome to the Home Admin</h1>
+    <p>Đây là trang chủ Admin</p>
+</div>
 </body>
 </html>

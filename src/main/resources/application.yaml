@@ -26,7 +26,7 @@ spring:
       max-request-size: 50MB
   thymeleaf:
     cache: false
-    prefix: classpath:/templates
+    prefix: classpath:/templates/
     suffix: .html
 app:
   cloudinary:
