@@ -1,0 +1,18 @@
+.active {
+            color: #fff !important;
+            /* Tailwind's blue-600 */
+            font-weight: 500;
+            background-color: #3B82F6;
+        }
+
+        .active:hover {
+            background-color: #3B82F6 !important;
+            /* Giữ nguyên màu nền khi hover */
+            cursor: default !important;
+            /* Tùy chọn: thay đổi con trỏ để chỉ ra không thể nhấp */
+        }
+
+        a:hover:not(.active) {
+            background-color: #E5E7EB;
+            /* Tailwind's gray-200 */
+        }
