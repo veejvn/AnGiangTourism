@@ -1,7 +1,7 @@
 package javaweb.AnGiangTourism.controller;
 
 import jakarta.servlet.http.HttpSession;
-import javaweb.AnGiangTourism.dto.Auth.AdminLoginRequest;
+import javaweb.AnGiangTourism.dto.auth.AdminLoginRequest;
 import javaweb.AnGiangTourism.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +23,7 @@ public class AuthController {
             return "redirect:/admin/dashboard";
         }
         model.addAttribute("adminLoginView", new AdminLoginRequest());
-        return "/admin/login";
+        return "admin/login";
     }
 
 }

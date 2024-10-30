@@ -54,45 +54,66 @@
         <div class="login-wrap p-0">
           <h3 class="mb-4 text-center text-2xl">Chỉnh sửa Địa Danh</h3>
           <!-- Thêm ID để truy cập form -->
-          <form id="createPlaceForm" class="signin-form d-flex" enctype="multipart/form-data" th:action="@{/place/save}" method="post" onsubmit="uploadImageAndSubmit(event)">
+          <form id="createPlaceForm" class="signin-form d-flex"
+                th:action="@{/admin/place/update/{id}(id=${id})}"
+                th:object="${placeRequest}"
+                method="post"
+                enctype="multipart/form-data"
+                onsubmit="uploadImageAndSubmit(event)">
+
             <div class="col-md-6 pr-3">
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="text" class="form-control" name="name" placeholder="Tên địa danh" required="">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Tên địa danh" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="text" class="form-control" name="address" placeholder="Địa chỉ" required="">
+                <input type="text" class="form-control" th:field="*{address}" placeholder="Địa chỉ" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="text" class="form-control" name="description" placeholder="Mô tả địa danh" required="">
+                <input type="text" class="form-control" th:field="*{description}" placeholder="Mô tả địa danh" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="text" class="form-control" name="hotline" placeholder="Hotline" required="">
+                <input type="text" class="form-control" th:field="*{hotLine}" placeholder="Hotline" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="number" class="form-control" name="minPrice" placeholder="min price" required="">
+                <input type="number" class="form-control" th:field="*{minPrice}" placeholder="min price" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="number" class="form-control" name="maxPrice" placeholder="max price" required="">
+                <input type="number" class="form-control" th:field="*{maxPrice}" placeholder="max price" required>
               </div>
               <div class="form-group" style="margin-bottom: 5%;">
-                <input type="file" class="form-control" required>
-                <input type="hidden" id="image" name="image"> <!-- Trường ẩn để lưu URL ảnh -->
+                <select th:field="*{categoryId}" class="form-control" required>
+                  <option value="" disabled selected>Chọn một loại dịch vụ</option>
+                  <option th:each="category : ${categories}"
+                          th:value="${category.id}"
+                          th:text="${category.name}">
+                  </option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 5%;">
+                <input type="file" class="form-control" id="imageFile" required onchange="previewImage(event)">
+                <input type="hidden" th:field="*{image}" name="image" id="image"> <!-- Trường ẩn để lưu URL ảnh -->
               </div>
 
-              <div class="form-group d-flex mb-3">
-                <div class="col-6 pr-2">
-                  <input type="text" id="geometrylatt" class="form-control" name="latitude" placeholder="Kinh độ" required>
-                </div>
-                <div class="col-6 pl-2">
-                  <input type="text" id="geometrylong" class="form-control" name="longitude" placeholder="Vĩ độ" required>
-                </div>
+              <div th:if="${successMessage}" class="text-green-500">
+                <p th:text="${successMessage}"></p>
+              </div>
+              <div th:if="${errorMessage}" class="text-danger">
+                <p th:text="${errorMessage}"></p>
               </div>
             </div>
-            <div class="col-md-6">
-              <div id="map" style="height: 400px;"></div>
 
-              <div class="form-group mt-5">
-                <button type="submit" class="form-control btn btn-primary submit px-3">Lưu</button>
+            <div class="col-md-6">
+              <div id="map" style="height: 400px; margin-bottom: 20px;"></div>
+              <div class="form-group d-flex mb-3">
+                <div class="col-6 pr-2">
+                  <input type="text" id="geometrylatt" th:field="*{latitude}" class="form-control" placeholder="Kinh độ" required>
+                </div>
+                <div class="col-6 pl-2">
+                  <input type="text" id="geometrylong" th:field="*{longitude}" class="form-control" placeholder="Vĩ độ" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="form-control btn btn-primary submit px-3">Cập Nhật</button>
               </div>
             </div>
           </form>

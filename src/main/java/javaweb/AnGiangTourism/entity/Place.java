@@ -1,9 +1,11 @@
 package javaweb.AnGiangTourism.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Data
@@ -26,5 +28,20 @@ public class Place {
     Integer maxPrice;
     @Column(columnDefinition = "TEXT")
     String description;
-    
+    double lon;
+    double lat;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    Category category;
+
+    public Place(String id, String name, String address, String image, double lat, double lon) {
+        this.id=id;
+        this.name=name;
+        this.address=address;
+        this.lat=lat;
+        this.lon=lon;
+        this.image=image;
+    }
 }

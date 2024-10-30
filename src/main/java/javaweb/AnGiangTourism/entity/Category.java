@@ -1,11 +1,12 @@
 package javaweb.AnGiangTourism.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +20,8 @@ public class Category {
     String id;
 
     String name;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", orphanRemoval = true)
+    @JsonManagedReference
+    List<Place> places = new ArrayList<>();
 }

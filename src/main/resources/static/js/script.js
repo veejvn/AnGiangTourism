@@ -1,4 +1,4 @@
-var map = L.map("map", {center: [10.030249, 105.772097], zoom: 17});
+var map = L.map("map", {center: [10.59041, 105.1932], zoom: 11});
         L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             {
@@ -8,9 +8,20 @@ var map = L.map("map", {center: [10.030249, 105.772097], zoom: 17});
 
     function onEachFeature(features, layer) {
         if (features.properties && features.properties.name) {
-            layer.bindPopup(features.properties.name);
+            layer.bindPopup(`
+                <div class="card" style="width: 18rem;">
+                    <img src="${features.properties.image}" class="card-img-top img-fluid" alt="Place Image" style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">${features.properties.name}</h5>
+                        <p class="card-text"><strong>Địa chỉ:</strong> ${features.properties.address}</p>
+                        <p class="card-text"><strong>Số điện thoại:</strong> ${features.properties.tel}</p>
+                    </div>
+                </div>
+            `);
         }
     }
+
+
 
     var layer2 = L.layerGroup().addTo(map);
 
@@ -25,38 +36,3 @@ var map = L.map("map", {center: [10.030249, 105.772097], zoom: 17});
       }).addTo(layer2)
     });
 
-    // Hàm tìm kiếm địa điểm
-    async function searchLocation() {
-        const query = document.getElementById('searchInput').value;
-        if (!query) {
-            alert('Vui lòng nhập tên địa điểm.');
-            return;
-        }
-
-        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
-
-        try {
-            const response = await fetch(url);
-            const results = await response.json();
-
-            if (results.length > 0) {
-                const firstResult = results[0];
-                const lat = firstResult.lat;
-                const lon = firstResult.lon;
-
-                // Cập nhật bản đồ đến địa điểm tìm thấy
-                map.setView([lat, lon], 15); // Thay đổi mức zoom nếu cần
-
-                // Thêm marker vào địa điểm tìm thấy
-                L.marker([lat, lon]).addTo(map).bindPopup(firstResult.display_name).openPopup();
-            } else {
-                alert('Không tìm thấy địa điểm nào.');
-            }
-        } catch (error) {
-            console.error('Lỗi khi tìm kiếm địa điểm:', error);
-            alert('Đã có lỗi xảy ra khi tìm kiếm địa điểm.');
-        }
-    }
-
-    // Thêm sự kiện click cho nút tìm kiếm
-    document.getElementById('searchButton').addEventListener('click', searchLocation);

@@ -18,17 +18,27 @@
         </thead>
         <tbody>
         <!-- Sử dụng vòng lặp th:each để duyệt qua danh sách các place -->
-        <tr th:each="place : ${places}">
+        <tr th:each="place : ${listPlace}">
             <td class="py-2 px-4 border-b border-gray-300" th:text="${place.id}">1</td>
             <td class="py-2 px-4 border-b border-gray-300" th:text="${place.name}">Tên</td>
             <td class="py-2 px-4 border-b border-gray-300" th:text="${place.description}">Mô tả</td>
             <td class="py-2 px-4 border-b border-gray-300">
-                <button class="bg-blue-500 text-white px-3 py-1 rounded">Chỉnh sửa</button>
-                <a th:href="@{'/admin/place/delete/' + ${place.id}}" class="text-red-500 ml-2">Xóa</a>
+                <button class="bg-blue-500 text-white px-3 py-1 rounded">
+                    <a th:href="@{'/admin/place/update/' + ${place.id}}">Chỉnh sửa</a>
+                </button>
+                <button class="bg-red-500 text-white px-3 py-1 rounded">
+                    <a th:href="@{'/admin/place/delete/' + ${place.id}}">Xóa</a>
+                </button>
             </td>
         </tr>
         </tbody>
     </table>
+    <div th:if="${successMessage}" class="alert alert-success">
+        <p th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}"></p>
+    </div>
 </div>
 </body>
 </html>
