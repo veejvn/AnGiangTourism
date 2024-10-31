@@ -1,5 +1,6 @@
 package javaweb.AnGiangTourism.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,9 +18,12 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JsonIgnore
     String id;
 
     String name;
+
+    String image;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", orphanRemoval = true)
     @JsonManagedReference

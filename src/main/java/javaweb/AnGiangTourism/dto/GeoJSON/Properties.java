@@ -1,5 +1,6 @@
 package javaweb.AnGiangTourism.dto.GeoJSON;
 
+import javaweb.AnGiangTourism.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,6 @@ public class Properties {
     Integer minPrice;
     Integer maxPrice;
     String description;
+    String categoryStr;
+    String imageCategory;
 }

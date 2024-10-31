@@ -43,14 +43,20 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0" style="margin-top: 30%;">
                         <h1 class="mb-4 text-center">Tạo mới một loại dịch vụ</h1>
-                        <form th:action="@{/admin/category/create}" id="createCategoryForm" th:object="${addCategoryRequest}" method="post" enctype="multipart/form-data" class="signin-form" onsubmit="uploadImageAndSubmit(event)">
+                        <form th:action="@{/admin/category/create}" id="createCategoryForm" th:object="${categoryRequest}" method="post" enctype="multipart/form-data" class="signin-form" onsubmit="uploadImageAndSubmit(event)">
                             <div class="form-group" style="margin-bottom: 5%;">
                                 <input type="text" th:field="*{name}" class="form-control" placeholder="Tên loại dịch vụ"
                                        required="">
                             </div>
                             <div class="form-group" style="margin-bottom: 5%;">
-                                <input type="hidden" id="image"  name="image">
+                                <input type="hidden" id="image" th:field="*{image}"  name="image">
                                 <input type="file" class="form-control" required="">
+                            </div>
+                            <div th:if="${successMessage}" class="text-green-500">
+                                <p th:text="${successMessage}"></p>
+                            </div>
+                            <div th:if="${errorMessage}" class="text-danger">
+                                <p  th:text="${errorMessage}"></p>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Thêm mới</button>

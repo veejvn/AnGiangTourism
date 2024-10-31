@@ -1,14 +1,17 @@
 package javaweb.AnGiangTourism.dto.category;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AddCategoryRequest {
+public class CategoryRequest {
 
-    @NotNull(message = "Category name is required")
+    @NotBlank(message = "Category name is required")
     String name;
+
+    @NotBlank(message = "Image Category is required")
+    String image;
 }

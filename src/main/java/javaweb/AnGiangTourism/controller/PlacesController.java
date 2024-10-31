@@ -35,7 +35,6 @@ public class PlacesController {
         return "admin/place/create"; // Trả về view tạo mới Place
     }
 
-
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public String addPlace(@ModelAttribute("placeRequest") @Valid PlaceRequest request,
@@ -44,10 +43,6 @@ public class PlacesController {
         if(bindingResult.hasErrors()){
             String errorMessage = Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage();
             redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-            return "redirect:/admin/place/create";
-        }
-        if(placeService.existsByName(request.getName())){
-            redirectAttributes.addFlashAttribute("errorMessage", "Tên địa điểm đã tồn tại");
             return "redirect:/admin/place/create";
         }
         placeService.savePlace(request);
@@ -87,11 +82,7 @@ public class PlacesController {
         if (bindingResult.hasErrors()){
             String errorMessage = Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage();
             redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-            return "/admin/place/update";
-        }
-        if(placeService.existsByName(request.getName())){
-            redirectAttributes.addFlashAttribute("errorMessage", "Tên địa điểm đã tồn tại");
-            return "redirect:/admin/place/update/" + id;
+            return "redirect:/admin/place/update";
         }
         placeService.updatePlace(id, request);
         redirectAttributes.addFlashAttribute("successMessage", "Cập nhật địa điểm thành công!");

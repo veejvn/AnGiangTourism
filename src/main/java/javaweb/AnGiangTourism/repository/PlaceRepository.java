@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, String> {
-    boolean existsByName(String name);
 
     @Query("SELECT p.id AS id, p.name AS name, p.address AS address, " +
             "p.hotLine AS hotLine, p.image AS image, p.minPrice AS minPrice, " +

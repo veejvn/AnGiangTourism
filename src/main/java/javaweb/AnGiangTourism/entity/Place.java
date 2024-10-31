@@ -1,6 +1,7 @@
 package javaweb.AnGiangTourism.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +20,7 @@ public class Place {
     String id;
 
     @Column(name = "the_geom", columnDefinition = "geometry")
+    @JsonIgnore
     Geometry the_geom;
     String name;
     String address;

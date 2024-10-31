@@ -49,8 +49,15 @@ public class PlaceService {
 
     private Feature convertDataToFeature(Place place) {
 
-
         Properties properties = propertiesMapper.toProperties(place);
+
+        if (place.getCategory() != null) {
+            properties.setCategoryStr(place.getCategory().getName());
+            properties.setImageCategory(place.getCategory().getImage());
+        } else {
+            properties.setCategoryStr("Unknown");
+            properties.setImageCategory("default-image.jpg"); // Hoặc giá trị mặc định
+        }
 
         // Chuyển đổi Geometry sang GeoJSON (chuỗi GeoJSON)
         String geoJson = convertGeometryToGeoJson(place.getThe_geom());
@@ -73,10 +80,6 @@ public class PlaceService {
             e.printStackTrace();
         }
         return writer.toString();
-    }
-
-    public boolean existsByName(String name){
-        return placeRepository.existsByName(name);
     }
 
     public Optional<Place> findById(String id){
