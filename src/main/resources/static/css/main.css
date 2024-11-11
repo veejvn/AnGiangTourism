@@ -1,71 +1,49 @@
-body {
-    padding: 0;
-    margin: 0;
-}
-html, body, #map {
-    height: 100%;
-    width: 100%;
-}
-.search-input{
-    z-index: 10;
-}
+/* CSS cho sidebar trượt */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #f8f9fa;
+            transition: left 0.3s ease;
+            z-index: 9999;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            padding: 20px;
+        }
+        #sidebar.show {
+            left: 0;
+        }
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
 
-/* Home Start */
-.header{
-    background-color: transparent !important;
-    position: fixed;
-    top: 1%;
-    left: 1%;
-    right: 1%;
-    box-shadow: none;
-}
 
-.navbar-item{
-    border: 1px solid #fff;
-    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
-    background-color: #fff;
-    height: 25px;
-    width: auto;
-    text-align: center;
-    line-height: 6.1px;
-    border-radius: 15px;
-    margin-left: 3%;
-}
-.navbar-item:hover{
-    transform: scale(1.1);
-}
+        /* CSS cho header và sidebar button */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0); /* Nền trong suốt với độ mờ */
+            z-index: 9999 !important; /* Đảm bảo header nổi lên trên bản đồ */
+        }
 
-.navbar{
-    position: absolute;
-    right: 10%;
-}
+        /* Nút hiện sidebar */
+        #toggleSidebar {
+            background-color: rgba(0, 0, 255, 0.7); /* Nền trong suốt với màu xanh dương nhạt */
+            z-index: 9999; /* Đảm bảo nút nổi lên trên bản đồ */
+            backdrop-filter: blur(5px); /* Hiệu ứng mờ */
+        }
+        .tooltip.show {
+            z-index: 99999 !important;
+        }
+        .z-index{
+           z-index: 9999!important;
+        }
 
-.input-search{
-    border: 1px solid #fff;
-    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
-    background-color: #fff;
-    border-radius: 15px;
-    padding-left: 10px;
-}
+        .leaflet-control-zoom{
+           left: 3px!important;
+           top: 90px!important;
+        }
 
-.submit-search{
-    border: 1px solid #0d6efd;
-    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
-    background-color: #0d6efd;
-    color: #fff;
-    border-radius: 15px;
-}
-
-.close-search{
-    border: 1px solid #0d6efd;
-    box-shadow: 0px 2px 13px 1px rgba(0,0,0,0.75);
-    background-color: #E3583A;
-    color: #fff;
-    border-radius: 15px;
-}
-
-.leaflet-control-zoom {
-    position: fixed !important;
-    top: 10%;
-}
-/* Home End */
+        .leaflet-popup-content-wrapper{
+            width: 30rem;
+        }

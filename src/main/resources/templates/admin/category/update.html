@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html layout:decorate="admin/layout/layout.html" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Category</title>
+    <script>
+        async function uploadImageAndSubmit(event) {
+            event.preventDefault(); // Ngăn form submit mặc định
+
+            const fileInput = document.querySelector('input[type="file"]');
+            const file = fileInput.files[0];
+            if (!file) {
+                // Nếu không có tệp tin, chỉ cần submit form mà không upload ảnh
+                document.getElementById('createCategoryForm').submit();
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("image", file);
+
+            try {
+                const response = await fetch('/upload/image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const imageUrl = await response.text();
+                    document.getElementById('image').value = imageUrl; // Gán URL vào trường ẩn "image"
+
+                    // Sau khi upload thành công, submit form
+                    document.getElementById('createCategoryForm').submit();
+                } else {
+                    alert("Upload thất bại!");
+                }
+            } catch (error) {
+                alert("Có lỗi xảy ra khi upload ảnh.");
+            }
+        }
+    </script>
+</head>
+<body>
+<div layout:fragment="content">
+    <section class="ftco-section" style="height: inherit;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0" style="margin-top: 30%;">
+                        <h1 class="mb-4 text-center">Cập nhật loại dịch vụ</h1>
+                        <form th:action="@{/admin/category/update/{id}(id=${id})}" id="createCategoryForm" th:object="${categoryRequest}" method="post" enctype="multipart/form-data" class="signin-form" onsubmit="uploadImageAndSubmit(event)">
+                            <div class="form-group" style="margin-bottom: 5%;">
+                                <input type="text" th:field="*{name}" class="form-control" placeholder="Tên loại dịch vụ" required="">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 5%;">
+                                <input type="hidden" id="image" th:field="*{image}" name="image" />
+                                <input type="file" class="form-control" />
+                                <p th:if="${categoryRequest.image}" class="text-info">Hình ảnh hiện tại: <img th:src="@{${categoryRequest.image}}" alt="Current Image" style="width: 70px; height: 70px;" /></p>
+                            </div>
+                            <div th:if="${successMessage}" class="text-green-500">
+                                <p th:text="${successMessage}"></p>
+                            </div>
+                            <div th:if="${errorMessage}" class="text-danger">
+                                <p th:text="${errorMessage}"></p>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary submit px-3">Cập nhật</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

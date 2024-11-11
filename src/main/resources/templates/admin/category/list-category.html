@@ -2,11 +2,45 @@
 <html layout:decorate="admin/layout/layout.html" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Category</title>
+    <title>Danh sách Loại hình Du lịch</title>
 </head>
 <body>
-  <div layout:fragment="content">
-    <h1>Create new Category page</h1>
-  </div>
+<div layout:fragment="content">
+    <h1 class="text-2xl font-bold my-4">Danh sách Loại hình Du lịch</h1>
+    <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead>
+        <tr>
+            <th class="py-2 px-4 border-b border-gray-300">STT</th>
+            <th class="py-2 px-4 border-b border-gray-300">Tên</th>
+            <th class="py-2 px-4 border-b border-gray-300">Hình ảnh marker</th>
+            <th class="py-2 px-4 border-b border-gray-300">Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Sử dụng vòng lặp th:each để duyệt qua danh sách các category -->
+        <tr th:each="category, iterStat : ${listCategory}">
+            <td class="py-2 px-4 border-b border-gray-300" th:text="${iterStat.index + 1}">1</td>
+            <td class="py-2 px-4 border-b border-gray-300" th:text="${category.name}">Tên</td>
+            <td class="py-2 px-4 border-b border-gray-300">
+                <img th:src="@{${category.image}}" alt="Mô tả" style="width: 70px; height: 70px;" />
+            </td>
+            <td class="py-2 px-4 border-b border-gray-300">
+                <button class="bg-blue-500 text-white px-3 py-1 rounded">
+                    <a th:href="@{'/admin/category/update/' + ${category.id}}">Chỉnh sửa</a>
+                </button>
+                <button class="bg-red-500 text-white px-3 py-1 rounded">
+                    <a th:href="@{'/admin/category/delete/' + ${category.id}}">Xóa</a>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${successMessage}" class="alert alert-success">
+        <p th:text="${successMessage}"></p>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</div>
 </body>
 </html>

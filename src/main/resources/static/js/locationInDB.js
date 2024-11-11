@@ -26,31 +26,36 @@ async function searchLocation() {
             }
         });
 
-         const customIcon = L.icon({
-             iconUrl: 'https://res.cloudinary.com/dxo7j3yib/image/upload/v1730225926/angiangtourism/images/nv9ffrvvllvhe5trsgsr.jpg', // Đường dẫn đến hình ảnh icon
-             iconSize: [38, 95], // Kích thước icon
-             iconAnchor: [22, 94], // Điểm neo của icon
-             popupAnchor: [-3, -76] // Điểm neo của popup
-         });
-
+        const customIcon = L.icon({
+            iconUrl: 'https://res.cloudinary.com/dxo7j3yib/image/upload/v1730693981/angiangtourism/images/zzmptixwfb25nlshxh0k.png', // Đường dẫn đến hình ảnh icon
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [-3, -30]
+        });
 
         // Lặp qua tất cả các địa điểm và thêm marker
         places.forEach(place => {
             const lat = place.lat;
             const lon = place.lon;
 
-            // Cập nhật bản đồ đến địa điểm tìm thấy
-            L.marker([lat, lon],{ icon: customIcon }).addTo(map)
+            // Thêm marker vào bản đồ
+            L.marker([lat, lon], { icon: customIcon }).addTo(map)
                 .bindPopup(`
-                    <div class="card" style="width: 18rem;">
-                        <img src="${place.image}" class="card-img-top img-fluid" alt="Place Image" style="max-height: 200px; object-fit: cover;">
+                    <div class="card" style="width: 28rem;">
+                    <img src="${place.image}" class="card-img-top img-fluid" alt="Place Image" style="max-height: 200px; object-fit: cover;">
                         <div class="card-body">
-                            <h5 class="card-title">${place.name}</h5>
-                            <p class="card-text"><strong>Địa chỉ:</strong> ${place.address}</p>
-                        </div>
-                    </div>
+                             <h5 class="card-title">${place.name}</h5>
+                              <p class="card-text"><strong>Địa chỉ:</strong> ${place.address}</p>
+                               <p class="card-text"><strong>Số điện thoại:</strong> ${place.hotLine}</p>
+                               <p class="card-text">${place.description}</p>
+                               <h6 class="card-text">${place.minPrice} - ${place.maxPrice}</h6>
+                             </div>
+                     </div>
                 `)
                 .openPopup();
+
+            // Di chuyển mượt mà đến vị trí tìm thấy
+            map.flyTo([lat, lon], 15, { animate: true, duration: 5 }); // Thay đổi độ cao và thời gian nếu cần
         });
 
         // Nếu muốn zoom ra để hiển thị tất cả các địa điểm

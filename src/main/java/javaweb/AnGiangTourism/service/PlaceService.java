@@ -86,6 +86,10 @@ public class PlaceService {
         return placeRepository.findById(id);
     }
 
+    public List<Place> findByCategoryId(String categoryId){
+        return  placeRepository.findByCategoryId(categoryId);
+    }
+
     public PlaceRequest mapperToPlaceRequest(Place place){
         return placeMapper.toPlaceRequest(place);
     }
@@ -162,6 +166,6 @@ public class PlaceService {
     }
 
     public List<Place> findByNameContaining(String name) {
-        return placeRepository.findByNameContaining(name);
+        return placeRepository.fuzzySearchByName(name);
     }
 }

@@ -24,7 +24,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final String[] POST_PUBLIC_ROUTES = {"/admin/login"};
-    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login", "/js/**", "/css/**","/error", "/api/**"};
+    private final String[] GET_PUBLIC_ROUTES = {"/", "/home", "/admin/login", "/js/**", "/css/**","/error", "/api/**", "/angiang.json"};
 
     private final UserDetailsServiceImpl userDetailsService;
 

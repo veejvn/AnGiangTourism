@@ -36,5 +36,9 @@ public class PlaceController {
         }).collect(Collectors.toList());
     }
 
-
+    @GetMapping("/searchByCategoryId")
+    public ResponseEntity<List<Place>> searchByCategoryId(@RequestParam String categoryId){
+        List<Place> places = placeService.findByCategoryId(categoryId);
+        return ResponseEntity.ok(places);
+    }
 }
