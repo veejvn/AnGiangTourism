@@ -32,7 +32,7 @@ public class PlaceController {
     public List<Place> searchPlaces(@RequestParam String name) {
         List<Place> places = placeService.findByNameContaining(name);
         return places.stream().map(place -> {
-            return new Place(place.getId(), place.getName(), place.getAddress(), place.getImage() ,place.getLat(), place.getLon());
+            return new Place(place.getId(), place.getName(), place.getAddress(), place.getImage() ,place.getLat(), place.getLon(), place.getMinPrice(), place.getMaxPrice(), place.getDescription());
         }).collect(Collectors.toList());
     }
 

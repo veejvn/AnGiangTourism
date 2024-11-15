@@ -12,11 +12,13 @@ function onEachFeature(features, layer) {
             <div class="card" style="width: 28rem;">
                 <img src="${features.properties.image}" class="card-img-top img-fluid" alt="Place Image" style="max-height: 200px; object-fit: cover;">
                 <div class="card-body">
-                    <h5 class="card-title">${features.properties.name}</h5>
+                    <h5 class="card-title" style="font-size:30px; color: green; font-weight: 500;">${features.properties.name}</h5>
                     <p class="card-text"><strong>Địa chỉ:</strong> ${features.properties.address}</p>
                     <p class="card-text"><strong>Số điện thoại:</strong> ${features.properties.hotLine}</p>
                     <p class="card-text">${features.properties.description}</p>
-                    <h6 class="card-text">${features.properties.minPrice} - ${features.properties.maxPrice}</h6>
+                    <h6 class="card-text">Giá giao động: ${features.properties.minPrice} - ${features.properties.maxPrice}</h6>
+                    <input id="directionToHere" type = "hidden">
+                    <button class="btn bg-blue-500 text-white rounded-lg p-2 hover:bg-gray-300" onclick="findRoute(${features.properties.lat}, ${features.properties.lon})">Đường đi</button>
                 </div>
             </div>
         `);
@@ -36,16 +38,23 @@ $.getJSON(url, function (featureCollection) {
             // Tạo icon với hình ảnh từ category
             const markerIcon = L.icon({
                 iconUrl: feature.properties.imageCategory || 'default-marker.png', // URL hình ảnh marker từ category
-                iconSize: [30, 30], // Kích thước của marker
-                iconAnchor: [15, 30], // Điểm neo
+                iconSize: [13, 13], // Kích thước của marker
+                iconAnchor: [5, 10], // Điểm neo
                 popupAnchor: [-3, -30]
             });
-
             return L.marker(latlng, { icon: markerIcon });
         },
         onEachFeature: onEachFeature
     }).addTo(layer2);
 });
+
+//Hàm tìm đường đến điểm đang hiển thị:
+function findRoute(destinationLat, destinationLng) {
+    toggleLocation(map, "directionToHere", (startLat, startLng) => {
+        const location = document.getElementById('directionToHere').value;
+        calculateRoute(startLat, startLng, destinationLat, destinationLng);
+    });
+}
 
 // ===================================================Thêm đường viền từ angiang.json===========================================
 // Biến để theo dõi trạng thái viền

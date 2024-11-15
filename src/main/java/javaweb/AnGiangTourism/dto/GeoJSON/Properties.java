@@ -20,4 +20,6 @@ public class Properties {
     String description;
     String categoryStr;
     String imageCategory;
+    double lon;
+    double lat;
 }

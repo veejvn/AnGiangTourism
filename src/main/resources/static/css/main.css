@@ -7,13 +7,28 @@
             height: 100%;
             background-color: #f8f9fa;
             transition: left 0.3s ease;
-            z-index: 9999;
             box-shadow: 2px 0 5px rgba(0,0,0,0.2);
             padding: 20px;
         }
         #sidebar.show {
             left: 0;
         }
+
+         #sidebar1 {
+                    position: fixed;
+                    top: 0;
+                    left: -300px;
+                    width: 300px;
+                    height: 100%;
+                    background-color: #f8f9fa;
+                    transition: left 0.3s ease;
+                    z-index: 9998;
+                    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+                    padding: 20px;
+                }
+                #sidebar1.show {
+                    left: 0;
+                }
         #map {
             height: 100vh;
             width: 100%;
@@ -29,12 +44,26 @@
         /* Nút hiện sidebar */
         #toggleSidebar {
             background-color: rgba(0, 0, 255, 0.7); /* Nền trong suốt với màu xanh dương nhạt */
-            z-index: 9999; /* Đảm bảo nút nổi lên trên bản đồ */
+            z-index: 9997; /* Đảm bảo nút nổi lên trên bản đồ */
             backdrop-filter: blur(5px); /* Hiệu ứng mờ */
         }
+
+        #toggleSidebar1 {
+                    background-color: rgba(0, 0, 255, 0.7); /* Nền trong suốt với màu xanh dương nhạt */
+                    z-index: 9997!important; /* Đảm bảo nút nổi lên trên bản đồ */
+                    backdrop-filter: blur(5px); /* Hiệu ứng mờ */
+                }
+
         .tooltip.show {
             z-index: 99999 !important;
         }
+
+        .shadow-custom {
+            --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #00000000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
         .z-index{
            z-index: 9999!important;
         }
@@ -42,8 +71,15 @@
         .leaflet-control-zoom{
            left: 3px!important;
            top: 90px!important;
+           position: fixed!important;
         }
 
         .leaflet-popup-content-wrapper{
             width: 30rem;
         }
+
+
+        .leaflet-top {
+             top: 50% !important;
+
+         }
