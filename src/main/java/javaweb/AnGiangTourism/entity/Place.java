@@ -38,12 +38,17 @@ public class Place {
     @JsonBackReference
     Category category;
 
-    public Place(String id, String name, String address, String image, double lat, double lon) {
+    public Place(String id, String name, String address, String image, double lat, double lon, Integer minPrice, Integer maxPrice, String description ) {
         this.id=id;
         this.name=name;
         this.address=address;
         this.lat=lat;
         this.lon=lon;
         this.image=image;
+        this.maxPrice = maxPrice;
+        this.minPrice = minPrice;
+        this.description = description;
     }
+
+
 }

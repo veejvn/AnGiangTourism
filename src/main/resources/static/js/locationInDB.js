@@ -49,6 +49,8 @@ async function searchLocation() {
                                <p class="card-text"><strong>Số điện thoại:</strong> ${place.hotLine}</p>
                                <p class="card-text">${place.description}</p>
                                <h6 class="card-text">${place.minPrice} - ${place.maxPrice}</h6>
+                               <input id="directionToHere" type = "hidden">
+                               <button class="btn bg-blue-500 text-white rounded-lg p-2 hover:bg-gray-300" onclick="findRoute(${place.lat}, ${place.lon})">Đường đi</button>
                              </div>
                      </div>
                 `)
